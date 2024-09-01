@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
 ::raw "
 .navbar .brand {
 	display: inline-block;
@@ -6,15 +6,18 @@
 	text-shadow: 0 0 0 transparent;
 }
 "::
-</style>
-<nav class="nav">
-	<div class="navbar">
-		<div class="navbar-inner" style="background:$$getHexValue(::themeColor::); border-bottom:1px solid rgba(0,0,0,.09)">
-			<div class="container">
-				<a ::cond api.isDefined("logo"):: ::attr href if(api.isDefined("website")) api.getValue("website") else api.config.rootPath:: class="brand"><img alt="" ::attr src api.getValue("logo"):: /></a>
-				<a ::attr href api.config.rootPath:: class="brand" style="color:$$getHexValue(::textColor::)">::if api.config.pageTitle!=null::::api.config.pageTitle::::else::API Documentation::end::</a>
-				<a href="#" id="theme-toggle" class="brand" style="color:$$getHexValue(::textColor::)" onclick="toggleTheme()" title="Toggle Dark Mode"><i class="fa fa-moon-o"></i></a>
-			</div>
-		</div>
+</style> -->
+<nav class="navbar navbar-expand">
+	<div class="container-fluid">
+		<a ::cond api.isDefined("logo"):: ::attr href if(api.isDefined("website")) api.getValue("website") else api.config.rootPath:: class="navbar-brand">
+			<img alt="" ::attr src api.getValue("logo"):: class="d-inline-block align-text-top"/>
+			::if api.config.pageTitle!=null::::api.config.pageTitle::::else::API Documentation::end::
+		</a>
+
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a href="#" id="theme-toggle" class="nav-link" style="color:$$getHexValue(::textColor::)" onclick="toggleTheme()" title="Toggle Dark Mode"><i class="fa fa-moon-o"></i></a>
+			</li>
+		</ul>
 	</div>
 </nav>

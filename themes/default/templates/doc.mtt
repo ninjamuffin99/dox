@@ -1,5 +1,5 @@
 ::if info.deprecated != null::
-	<div class="alert inline-content">
+	<div class="alert alert-warning inline-content">
 		<strong>Deprecated</strong>: ::raw info.deprecated.doc::
 	</div>
 ::end::

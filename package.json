@@ -4,5 +4,8 @@
 	},
 	"scripts": {
 		"postinstall": "lix download"
+	},
+	"dependencies": {
+		"bootstrap": "^5.3.3"
 	}
 }

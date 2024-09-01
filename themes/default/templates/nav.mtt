@@ -17,7 +17,7 @@
 				<i class="fa fa-folder"></i>
 				::api.getTreeName(tree)::
 			</a>
-			<ul class="nav nav-list">
+			<ul class="nav nav-list flex-column">
 				::foreach sub args[2]::
 					$$makeTree(::sub::,::depth + 1::)
 				::end::
