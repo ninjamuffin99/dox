@@ -26,6 +26,7 @@
 	<script src="::api.config.rootPath::index.js"></script>
 	<link rel="icon" href="::api.config.rootPath::favicon.ico" type="image/x-icon"/>
 	<title>::api.currentPageName::::if api.config.pageTitle !=null:: - ::api.config.pageTitle::::end::</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 	::set description = api.getShortDesc(type)::
 	::set description = description.substr(3, description.length-7)::
