@@ -16,7 +16,7 @@ class Dox {
 				output = output.substr(1); // remove leading "v"
 				var parts = output.split(".").map(Std.parseInt);
 				// min supported node version is 8.10.0 due to usage of regex dotall flag
-				isValidNode = parts[0] >= 8 && parts[1] >= 10;
+				isValidNode = parts[0] > 8 || parts[0] == 8 && parts[1] >= 10;
 			}
 			process.close();
 			if (isValidNode && FileSystem.exists("run.js")) {
@@ -138,7 +138,25 @@ class Dox {
 		function parseFile(path) {
 			var name = new Path(path).file;
 			Sys.println('Parsing $path');
+
+			var hashPaths = cfg.outputPath + "/hashes/";
+
+			if (!FileSystem.exists(hashPaths))
+				FileSystem.createDirectory(hashPaths);
+
 			var data = sys.io.File.getContent(path);
+			var md5Hash = haxe.crypto.Md5.encode(data);
+
+			if (sys.FileSystem.exists(hashPaths + name + ".md5")) {
+				var previousHash = sys.io.File.getContent(hashPaths + name + ".md5");
+				if (md5Hash == previousHash) {
+					Sys.println('Skipping $path, no file changes detected');
+					return;
+				}
+			}
+
+			sys.io.File.saveContent(hashPaths + name + ".md5", md5Hash);
+
 			var xml = try Xml.parse(data).firstElement() catch (err:Dynamic) {
 				trace('Error while parsing $path');
 				throw err;
